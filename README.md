@@ -1,13 +1,19 @@
 # Open Science Coalition
 
-Hugo site for the Open Science Coalition. The theme lives in `themes/clean-hugo/`.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6e15368c-55d1-4ed1-a6e2-47a6eee69164/deploy-status)](https://app.netlify.com/projects/open-science-coalition/deploys)
+
+Hugo site for the Open Science Coalition. The theme lives in `themes/clean-hugo/`. These theme is copied from the pyopensci website repository:
+
+https://github.com/pyopensci/pyopensci.github.io
+
+use at own risk :) 
 
 ## Prerequisites
 
 * [Hugo Extended](https://gohugo.io/installation/) 0.139.4
 * [Node.js](https://nodejs.org/) 24 (`nvm use`)
 
-## First-time setup
+## Check out the site locally 
 
 `npm ci` needs a `package-lock.json`. Create that file once (see below), then:
 
@@ -26,7 +32,7 @@ npm ci
 hugo --gc --minify
 ```
 
-Output goes to `public/`. Do not commit `public/`, `resources/`, or `.hugo_build.lock`.
+The output of the above commands will be dumpted into  `public/`. Do not commit `public/`, `resources/`, or `.hugo_build.lock` to git history!! 
 
 ## Refresh the lock file
 
@@ -43,10 +49,6 @@ Commit the new `package-lock.json`. Use `npm audit fix --force` only if you inte
 
 ## Deploy
 
-GitHub Actions builds and publishes the site.
+This site is deployed using GitHub Actions builds and is published using GitHub Pages. We use Netlify for live previews of pull requests. 
 
-* `.github/workflows/build-site.yml` builds on pull requests and on pushes to `main`, then checks links and images. Pushes to `main` also publish the site to GitHub Pages.
-
-One-time setting in the GitHub repo: Settings, Pages, Build and deployment, Source = GitHub Actions. The site is published at https://open-science-coalition.github.io/.
-
-Netlify: `netlify.toml` builds with Hugo Extended 0.139.4 and Node 24. The footer keeps the Netlify badge. Connect the repo in Netlify when you apply for the nonprofit plan. `npm ci` on Netlify needs the lock file in git.
+The site is published at https://open-science-coalition.github.io/. 
