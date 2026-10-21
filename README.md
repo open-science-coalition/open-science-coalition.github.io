@@ -45,9 +45,7 @@ Commit the new `package-lock.json`. Use `npm audit fix --force` only if you inte
 
 GitHub Actions builds and publishes the site.
 
-* `.github/workflows/build-site.yml` builds on pull requests and on pushes to `main`, then checks links and images.
-* `.github/workflows/deploy-gh-pages.yml` publishes to GitHub Pages on pushes to `main`.
-* `.github/workflows/main.yml` lints workflow files on pull requests.
+* `.github/workflows/build-site.yml` builds on pull requests and on pushes to `main`, then checks links and images. Pushes to `main` also publish the site to GitHub Pages.
 
 One-time setting in the GitHub repo: Settings, Pages, Build and deployment, Source = GitHub Actions. The site is published at https://open-science-coalition.github.io/.
 
