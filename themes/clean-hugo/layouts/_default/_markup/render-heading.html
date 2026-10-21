@@ -1,0 +1,13 @@
+{{- /*
+  Render hook for Markdown headings (site-wide).
+  Delegates to partials/heading.html so template section
+  headings use the same anchor markup. H1 stays a plain title.
+*/ -}}
+{{- partial "heading.html" (dict
+  "level" .Level
+  "id" .Anchor
+  "plain" .PlainText
+  "text" .Text
+  "html" true
+  "attrs" .Attributes
+) -}}

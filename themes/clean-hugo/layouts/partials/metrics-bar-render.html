@@ -1,0 +1,20 @@
+{{/*
+  Metrics Bar Renderer
+  A partial that renders the metrics bar HTML structure within a layout
+  Usage:
+    {{ $scratch := newScratch }}
+    {{ partial "metrics/build-stats.html" (dict "context" . "set" "volunteer" "scratch" $scratch) }}
+    {{ partial "metrics-bar-render.html" (dict "stats" ($scratch.Get "stats")) }}
+*/}}
+
+{{ $stats := .stats | default slice }}
+
+<div class="metrics-bar">
+  <div>
+    {{ range $stats }}
+      {{ if . }}
+      <div>{{ . | markdownify }}</div>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>

@@ -1,0 +1,5 @@
+{{ $title := .Get "title" | default "Our programs are community powered" }}
+<section class="home-programs-full">
+  {{ partial "heading.html" (dict "level" 2 "text" $title) }}
+  {{ partial "impact-cards.html" .Page }}
+</section>
