@@ -1,0 +1,91 @@
+# Open Science Coalition website (Hugo)
+
+baseURL = 'https://open-science-coalition.github.io/'
+languageCode = 'en-us'
+title = 'Open Science Coalition'
+theme = 'clean-hugo'
+timeZone = 'America/Denver'
+
+enableRobotsTXT = true
+
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    style = 'monokai'
+    lineNos = false
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+
+[params]
+  author = 'Open Science Coalition - Logo Placeholder'
+  description = 'Placeholder for a full width block. Replace with a one-sentence description of the coalition.'
+  blog_title = 'Blog'
+
+  [params.footer]
+    mission = '''Supported by the <a href="https://sloan.org/">Sloan Foundation</a>. Placeholder. Replace this footer text.'''
+
+  [params.theme]
+    enableFontAwesome = true
+
+    [params.theme.fonts]
+      heading = 'Poppins'
+      body = 'Nunito Sans'
+
+    # Surface colors are the Coolors neutrals. brandPurple is not defined in
+    # theme.toml, and the nav uses it, so the brand, text, and link keys
+    # below are the current pyOpenSci values. Phase 5 replaces them.
+    [params.theme.colors]
+      white = '#F5EBE0'
+      gray50 = '#EDEDE9'
+      primaryLight = '#E3D5CA'
+      secondary = '#E3D5CA'
+      gray200 = '#D6CCC2'
+      accentLight = '#D5BDAF'
+      featureCard = '#D5BDAF'
+
+      # Temporary, until the Coolors palette replaces them.
+      primary = '#2E6060'
+      primaryDark = '#142929'
+      gray700 = '#374151'
+      gray900 = '#111827'
+      link = '#2E6060'
+      linkOnDark = '#2DD4BF'
+      linkHover = '#1F4345'
+      heroBg = '#1F3A5F'
+      # These are brand colors from pyOS that I'd have to generalize to be a reusable element
+      brandPurple = '#1F3A5F'
+      deepPurple = '#19112D'
+      brandPurpleDark = '#542668'
+      brandPurpleMedium = '#735FAB'
+      brandSoftPurple = '#BAB3D4'
+      brandLightPurple = '#E1DFED'
+      brandMagenta = '#BB82B0'
+      brandHeaderPurple = '#6B5B95'
+
+      # Member colors. Tags, pathways, and charts only.
+      memberGreen = '#3F7D4E'
+      memberRed = '#B0413E'
+      memberNavy = '#1F3A5F'
+      memberSky = '#5B9BD5'
+
+[[menu.main]]
+  name = 'Home'
+  url = '/'
+  weight = 1
+
+[[menu.main]]
+  name = 'About'
+  url = '/about/'
+  weight = 2
+
+[[menu.main]]
+  name = 'Blog'
+  url = '/blog/'
+  weight = 3
