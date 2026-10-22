@@ -43,6 +43,7 @@ enableRobotsTXT = true
     # below are the current pyOpenSci values. Phase 5 replaces them.
     [params.theme.colors]
       white = '#F5EBE0'
+      navText = '#FFFFFF'
       gray50 = '#EDEDE9'
       primaryLight = '#E3D5CA'
       secondary = '#E3D5CA'
