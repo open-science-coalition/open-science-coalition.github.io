@@ -1,0 +1,29 @@
+# Lychee link-checker config for the Open Science Coalition site.
+# Docs: https://lychee.cli.rs/
+#
+# Domain skips live in .lycheeignore.
+# CI: .github/workflows/build-site.yml (--root-dir public).
+
+verbose = "info"
+format = "detailed"
+no_progress = true
+
+cache = true
+max_cache_age = "3d"
+cache_exclude_status = "500.."
+
+max_concurrency = 1
+max_redirects = 10
+timeout = 10
+max_retries = 2
+retry_wait_time = 2
+
+# Some sites block lychee's default user agent (curl).
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+# 401/403 are common on bot-protected pages. 429 is rate limiting.
+accept = ["200..=403", "429"]
+
+include_fragments = false
+scheme = ["https", "file"]
+include_verbatim = false

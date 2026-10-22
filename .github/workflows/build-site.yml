@@ -1,0 +1,100 @@
+name: Build and deploy Hugo site
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Pages
+        if: github.ref == 'refs/heads/main'
+        id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3
+        with:
+          hugo-version: "0.139.4"
+          extended: true
+
+      - name: Build with Hugo
+        env:
+          HUGO_ENV: production
+          PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          if [ -n "$PAGES_BASE_URL" ]; then
+            hugo --gc --minify --baseURL "${PAGES_BASE_URL}/"
+          else
+            hugo --gc --minify
+          fi
+
+      - name: Restore lychee cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .lycheecache
+          key: cache-lychee-${{ hashFiles('lychee.toml', '.lycheeignore') }}-${{ github.sha }}
+          restore-keys: |
+            cache-lychee-${{ hashFiles('lychee.toml', '.lycheeignore') }}-
+            cache-lychee-
+
+      - name: Check links with lychee
+        id: lychee
+        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.8.0
+        with:
+          fail: true
+          args: --root-dir public public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # for accessibility
+      - name: Check HTML using htmlproofer
+        uses: chabad360/htmlproofer@c2750eb7eb937599ac859517e7dd23a29f1b3ed7 # v2
+        with:
+          directory: "public"
+          arguments: |
+            --ignore-urls "/^https?:\/\/(www\.)?open-science-coalition\.github\.io\//"
+            --checks "Images,Scripts"
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ./public
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5

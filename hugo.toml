@@ -1,0 +1,114 @@
+# Open Science Coalition website (Hugo)
+
+baseURL = 'https://open-science-coalition.github.io/'
+languageCode = 'en-us'
+title = 'Open Science Coalition'
+theme = 'clean-hugo'
+timeZone = 'America/Denver'
+
+enableRobotsTXT = true
+
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    style = 'monokai'
+    lineNos = false
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+
+[params]
+  author = 'Open Science Coalition - Logo Placeholder'
+  description = 'Placeholder for a full width block. Replace with a one-sentence description of the coalition.'
+  blog_title = 'Blog'
+
+  [params.footer]
+    mission = '''Supported by the <a href="https://sloan.org/">Sloan Foundation</a>. Placeholder. Replace this footer text.'''
+
+  [params.theme]
+    enableFontAwesome = true
+
+    [params.theme.fonts]
+      heading = 'Poppins'
+      body = 'Nunito Sans'
+
+    # Keys not listed here fall back to themes/clean-hugo/theme.toml.
+    # heroBg and link are unset: the banner uses brand, links use action.
+    [params.theme.colors]
+      # Brand: nav, footer, h1/h2, main button. textOnDark sits on it.
+      brand = '#1F3A5F'
+      # Main button when hovered.
+      brandHover = '#542668'
+      # Outline button borders, focus rings, How it works icons. No text on it.
+      brandOutline = '#735FAB'
+      # Tag chips, table headers, section dividers. Brand-colored text on it.
+      brandTint = '#BAB3D4'
+
+      # Section backgrounds: full-width bands on landing pages.
+      # Light bands. Dark text on it.
+      sectionLightBg = '#E1DFED'
+      # Dark bands. textOnDark on it.
+      sectionDarkBg = '#19112D'
+
+      # Action: teal for filters, focus rings, and links. Separate from brand.
+      action = '#2E6060'
+      # Text and thin borders on actionLight.
+      actionDark = '#142929'
+      # Light bands. Dark text on it.
+      actionLight = '#E3D5CA'
+
+      # Small highlights. Not brand or action.
+      # Search highlights and featured card borders. textStrong on it.
+      highlight = '#E3D5CA'
+      # Pink accent bars. textStrong on it.
+      accentLight = '#D5BDAF'
+
+      # Text and surfaces.
+      # Page background. Body text sits on it.
+      pageBg = '#EDEDE9'
+      # Card, dropdown, and white-button backgrounds.
+      surface = '#F5EBE0'
+      # Text on brand, the hero, and dark bands. Same cream as surface.
+      textOnDark = '#F5EBE0'
+      # Card borders, dividers, inactive filter chips.
+      border = '#D6CCC2'
+      # Paragraphs and lists.
+      text = '#374151'
+      # Bold text, card titles, and text on yellow, pink, and green.
+      textStrong = '#111827'
+
+      # Links when hovered.
+      linkHover = '#1F4345'
+      # Nav link hover, links in dark bands, search focus ring.
+      linkOnDark = '#2DD4BF'
+
+      # Blog cards with no image. The title on the tile is textOnDark.
+      blogPlaceholder1 = '#BB82B0'
+      blogPlaceholder2 = '#6B5B95'
+
+      # Member colors. Tags, pathways, and charts only.
+      memberGreen = '#3F7D4E'
+      memberRed = '#B0413E'
+      memberNavy = '#1F3A5F'
+      memberSky = '#5B9BD5'
+
+[[menu.main]]
+  name = 'Home'
+  url = '/'
+  weight = 1
+
+# [[menu.main]]
+#   name = 'About'
+#   url = '/about/'
+#   weight = 2
+
+# [[menu.main]]
+#   name = 'Blog'
+#   url = '/blog/'
+#   weight = 3
