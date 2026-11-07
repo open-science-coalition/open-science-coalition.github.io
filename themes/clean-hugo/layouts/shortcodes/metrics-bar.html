@@ -1,0 +1,39 @@
+{{/*
+  Metrics bar shortcode — shared layout, flexible data input.
+
+  Named preset (live data):
+    {{< metrics-bar set="volunteer" >}}
+    {{< metrics-bar set="packages" >}}
+    {{< metrics-bar set="peer-review" >}}
+
+  Page front matter:
+    metrics_set: volunteer
+    {{< metrics-bar >}}
+
+  Manual stats (static or demo content):
+    {{< metrics-bar
+      stat1="**128** blog posts"
+      stat2="**500+** community members"
+    >}}
+*/}}
+{{ $set := .Get "set" | default (.Page.Params.metrics_set | default "") }}
+{{ $stats := slice }}
+
+{{ if $set }}
+  {{ $scratch := newScratch }}
+  {{ partial "metrics/build-stats.html" (dict
+      "context" .Page
+      "set" $set
+      "scratch" $scratch
+  ) }}
+  {{ $stats = $scratch.Get "stats" | default slice }}
+{{ else }}
+  {{ $stats = slice
+      (.Get "stat1" | default "")
+      (.Get "stat2" | default "")
+      (.Get "stat3" | default "")
+      (.Get "stat4" | default "")
+  }}
+{{ end }}
+
+{{ partial "metrics-bar-render.html" (dict "stats" $stats) }}

@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{ $e := .Params.event }}
+{{ $dateLine := "" }}
+{{ if $e }}
+  {{ $dateLine = partial "event-date-display.html" (dict "event" $e) }}
+  {{ $loc := $e.location_name | default $e.location }}
+  {{ with $loc }}
+    {{ $dateLine = printf "%s · %s" $dateLine . }}
+  {{ end }}
+{{ end }}
+{{ $headerColor := "#33205C" }}
+{{ if and $e (not .Params.image) }}
+  {{ $t := lower ($e.event_type | default "") }}
+  {{ if or (eq $t "training") (eq $t "workshop") }}
+    {{ $headerColor = "#71B3B5" }}
+  {{ else if eq $t "community" }}
+    {{ $headerColor = "#AC87A0" }}
+  {{ end }}
+{{ end }}
+{{ partial "blog-post-header.html" (dict "page" . "subtitle" $dateLine "headerColor" $headerColor) }}
+<article class="content-container">
+  <div class="content-main">
+    {{ .Content }}
+    {{ partial "event-instructors.html" . }}
+    {{ partial "learn-more.html" . }}
+    {{ partial "event-next.html" (dict "Page" .) }}
+  </div>
+  <footer class="blog-post__tags">
+    {{ with .Params.tags }}Tags: {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ "/tags/" | relURL }}{{ urlize $t }}">{{ $t }}</a>{{ end }}{{ end }}
+  </footer>
+  {{ partial "last-modified.html" . }}
+</article>
+{{ end }}

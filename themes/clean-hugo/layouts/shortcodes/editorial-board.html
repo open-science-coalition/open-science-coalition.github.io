@@ -1,0 +1,51 @@
+{{/* Editorial board: roles from data/*.yml, profiles from contributors.yml
+     Usage:
+       {{< editorial-board >}}                    — active + emeritus
+       {{< editorial-board section="active" >}}   — active board only
+       {{< editorial-board section="emeritus" >}} — emeritus only
+*/}}
+{{ $section := .Get "section" | default "all" }}
+{{ $board := index .Page.Site.Data "editorial-board" }}
+{{ $emeritus := index .Page.Site.Data "emeritus-editors" }}
+{{ $contributors := .Page.Site.Data.contributors | default slice }}
+{{ $showActive := or (eq $section "all") (eq $section "active") }}
+{{ $showEmeritus := or (eq $section "all") (eq $section "emeritus") }}
+
+{{ if and $showActive $board }}
+<section class="people-page__section">
+  <div class="container">
+    {{ partial "heading.html" (dict "level" 2 "id" "meet-our-editorial-board" "text" "Meet our editorial board") }}
+    <p>
+      The pyOpenSci software peer review process is led by a volunteer team of
+      editors from the scientific Python community. Editors do the following
+      things:
+    </p>
+    <ul>
+      <li>They find reviewers from diverse backgrounds who have a mixture of scientific domain and Python experience.</li>
+      <li>They oversee the entire review process for a package ensuring it runs in a timely and efficient manner.</li>
+      <li>They support the submitting authors and reviewers in answering questions related to the review.</li>
+      <li>They determine whether that package should be accepted into the pyOpenSci ecosystem once the review has wrapped up.</li>
+    </ul>
+    <p>
+      Learn more about the editor role at pyOpenSci
+      <a href="https://www.pyopensci.org/software-peer-review/how-to/editors-guide.html"
+         target="_blank" rel="noopener noreferrer">in our peer review guide</a>.
+    </p>
+    {{ partial "people/active-editorial-grid.html" (dict
+      "board" $board
+      "contributors" $contributors) }}
+  </div>
+</section>
+{{ end }}
+
+{{ if and $showEmeritus $emeritus }}
+<section class="people-page__section">
+  <div class="container">
+    {{ partial "heading.html" (dict "level" 2 "text" "Emeritus editors") }}
+    <p>We are deeply grateful for those who served on our editorial board previously.</p>
+    {{ partial "people/emeritus-editorial-grid.html" (dict
+      "board" $emeritus
+      "contributors" $contributors) }}
+  </div>
+</section>
+{{ end }}
