@@ -3,7 +3,7 @@ title: "Open Science Coalition"
 date: 2026-10-21
 draft: false
 layout: splash
-description: "Placeholder. Replace with a one-sentence description of the coalition."
+description: "Five organizations working together to expand who can do research."
 hero:
   color: "#1F3A5F"
 cards:
