@@ -24,12 +24,12 @@ enableRobotsTXT = true
     guessSyntax = true
 
 [params]
-  author = 'Open Science Coalition - Logo Placeholder'
-  description = 'Placeholder for a full width block. Replace with a one-sentence description of the coalition.'
+  author = 'Open Science Coalition'
+  description = 'A coalition of open science communities working together to share infrastructure, funding, and practice.'
   blog_title = 'Blog'
 
   [params.footer]
-    mission = '''Supported by the <a href="https://sloan.org/">Sloan Foundation</a>. Placeholder. Replace this footer text.'''
+    mission = '''Supported by the <a href="https://sloan.org/">Sloan Foundation</a> and the <a href="https://www.moore.org/">Moore Foundation</a>.'''
 
   [params.theme]
     enableFontAwesome = true
