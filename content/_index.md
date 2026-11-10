@@ -6,23 +6,25 @@ layout: splash
 description: "Five organizations working together to expand who can do research."
 hero:
   color: "#1F3A5F"
-cards:
-  - title: "Placeholder one"
-    excerpt: "Replace this card."
-  - title: "Placeholder two"
-    excerpt: "Replace this card."
-  - title: "Placeholder three"
-    excerpt: "Replace this card."
-  - title: "Placeholder three"
-    excerpt: "Replace this card."
+# cards:
+#   - title: "Placeholder one"
+#     excerpt: "Replace this card."
+#   - title: "Placeholder two"
+#     excerpt: "Replace this card."
+#   - title: "Placeholder three"
+#     excerpt: "Replace this card."
+#   - title: "Placeholder three"
+#     excerpt: "Replace this card."
 ---
 
+<!--
 ## and here is a heading
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+-->
 
 {{< feature-row layout="left"
     title="And here is a feature block with an image if we want that.."
@@ -35,4 +37,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 {{< home-programs-full title="Placeholder. Replace this heading." >}}
 
-We can have text here too . 
+We can have text here too .
